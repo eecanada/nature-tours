@@ -1,0 +1,19 @@
+{
+  "name": "nature-tours",
+  "version": "1.0.0",
+  "description": "node js app ",
+  "main": "app.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eecanada/nature-tours.git"
+  },
+  "author": "Eder",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eecanada/nature-tours/issues"
+  },
+  "homepage": "https://github.com/eecanada/nature-tours#readme"
+}
