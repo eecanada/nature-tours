@@ -15,3 +15,5 @@ app.listen(port, ()=>{
   console.log(`app running on port: ${port}`)
 })
 
+
+[um_loggedin] Welcome back {first_name} {last_name}: {username}, here is what has been happening recently [/um_loggedin]
