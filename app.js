@@ -81,6 +81,20 @@ app.patch('/api/v1/tours/:id', (req,res)=>{
   })
 })
 
+
+app.delete('/api/v1/tours/:id', (req, res)=>{
+  if(req.params.id > tours.length) {
+    return res.status(404).json({
+      status: 'failed',
+      message: 'Invalid ID'
+    })
+  }
+  res.status(204).json({
+    status: 'success',
+    data: null
+  })
+})
+
 const port = 3001;
 app.listen(port, ()=>{
   console.log(`app running on port: ${port}`)
