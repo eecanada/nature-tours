@@ -3,7 +3,12 @@ const tourController = require('./../controllers/toursController')
  
 const router = express.Router()
 
-router.route('/').get(tourController.getAllTours).post(tourController.createTour)
+//val holds the value of the id parameter, creating my own custome route id
+//params middleware:only runs for certain parameters
+router.param('id', tourController.checkID) 
+
+router.route('/').get(tourController.getAllTours).post(tourController.checkBody,tourController.createTour) 
+
 router.route('/:id').get(tourController.getTour).patch(tourController.updateTour).delete(tourController.deleteTour)
 
 module.exports = router

@@ -3,6 +3,30 @@ const fs = require('fs')
 //JSON parse turns json object to javascript object 
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`))
  
+// custom middleware function
+exports.checkID = (req,res,next,val) =>{  
+  console.log(`tour id is ${val}`)
+  if(req.params.id > tours.length) {
+    return res.status(404).json({
+      status: 'failed',
+      message: 'Invalid ID'
+    })
+  }
+  next()
+}
+
+// custom middleware function
+exports.checkBody = (req,res,next)=>{
+ if(!req.body.name || !req.body.price){
+  return res.status(400).json({
+    status: 'failed',
+    message: 'Missing property'
+  })
+ }
+ next()
+}
+  
+
 // ROUTE HANDLERS
 exports.getAllTours = (req,res)=>{
   res.status(200).json({
@@ -18,13 +42,7 @@ exports.getTour = (req,res)=>{
   console.log(req.params)
   const id = parseInt(req.params.id)
   //loop through tours to find 
-  const tour =  tours.find(el => el.id === id)
-  if(id > tours.length) {
-    return res.status(404).json({
-      status: 'failed',
-      message: 'Invalid ID'
-    })
-  } else {
+  const tour =  tours.find(el => el.id === id)  
     res.status(200).json({
       status: 'success',
       data: {
@@ -32,7 +50,7 @@ exports.getTour = (req,res)=>{
       }
       
     })
-  }
+  
  }
 
 exports.createTour = (req,res)=>{
@@ -52,12 +70,6 @@ exports.createTour = (req,res)=>{
 }
 
 exports.updateTour = (req,res)=>{
-  if(req.params.id > tours.length) {
-    return res.status(404).json({
-      status: 'failed',
-      message: 'Invalid ID'
-    })
-  }
   res.status(200).json({
     status: 'success',
     data: {
@@ -67,12 +79,6 @@ exports.updateTour = (req,res)=>{
 }
 
 exports.deleteTour = (req, res)=>{
-  if(req.params.id > tours.length) {
-    return res.status(404).json({
-      status: 'failed',
-      message: 'Invalid ID'
-    })
-  }
   res.status(204).json({
     status: 'success',
     data: null
