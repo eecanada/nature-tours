@@ -24,7 +24,7 @@ const tourSchema = new mongoose.Schema({
   },
   rating: {
     Number,
-    default: 4.5
+    // default: 4,
   },
   price:{
     type: Number,
@@ -34,6 +34,20 @@ const tourSchema = new mongoose.Schema({
 
 //MODEL
 const Tour =  mongoose.model('Tour',tourSchema)
+
+// this is an instance of the tour model 
+const testTour = new Tour({
+  name: 'The Forest Hiker',
+  rating: 4.7,
+  price: 497
+})
+
+testTour.save().then(doc => {
+  console.log(doc)
+}).catch(err => {
+  console.log('ERROR💥:', err)
+})
+
 // console.log(app.get('env'));
 // console.log(process.env)
 
