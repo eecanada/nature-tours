@@ -6,7 +6,8 @@ dotenv.config({ path: './config.env' });
 
 const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD)
 
-mongoose.connect(DB, {
+mongoose.
+  connect(DB, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false
@@ -14,7 +15,22 @@ mongoose.connect(DB, {
   console.log('DB connection successful')
 })
 
-console.log(app.get('env'));
+const tourSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    require: [true, 'A tour must have a name'],
+    unique: true 
+  },
+  rating: {
+    Number,
+    default: 4.5
+  },
+  price:{
+    type: Number,
+    require: [true, 'A tour must have a price'] 
+  } 
+})
+// console.log(app.get('env'));
 // console.log(process.env)
 
 // START SERVER
