@@ -15,6 +15,7 @@ mongoose.
   console.log('DB connection successful')
 })
 
+//SCHEMA
 const tourSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -30,6 +31,9 @@ const tourSchema = new mongoose.Schema({
     require: [true, 'A tour must have a price'] 
   } 
 })
+
+//MODEL
+const Tour =  mongoose.model('Tour',tourSchema)
 // console.log(app.get('env'));
 // console.log(process.env)
 
