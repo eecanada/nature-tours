@@ -15,39 +15,6 @@ mongoose.
   console.log('DB connection successful')
 })
 
-//SCHEMA
-const tourSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    require: [true, 'A tour must have a name'],
-    unique: true 
-  },
-  rating: {
-    Number,
-    // default: 4,
-  },
-  price:{
-    type: Number,
-    require: [true, 'A tour must have a price'] 
-  } 
-})
-
-//MODEL
-const Tour =  mongoose.model('Tour',tourSchema)
-
-// this is an instance of the tour model 
-const testTour = new Tour({
-  name: 'The Forest Hiker',
-  rating: 4.7,
-  price: 497
-})
-
-testTour.save().then(doc => {
-  console.log(doc)
-}).catch(err => {
-  console.log('ERROR💥:', err)
-})
-
 // console.log(app.get('env'));
 // console.log(process.env)
 

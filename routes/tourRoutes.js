@@ -5,7 +5,7 @@ const router = express.Router();
 
 //val holds the value of the id parameter, creating my own custome route id
 //params middleware:only runs for certain parameters
-router.param('id', tourController.checkID);
+// router.param('id', tourController.checkID);
 
 router
   .route('/')
